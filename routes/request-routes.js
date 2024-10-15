@@ -12,6 +12,7 @@ router.get('/generate-default', async (req, res) => {
     const prompt = "Tell me what food is great for losing weight.";
 
     const result = await model.generateContent(prompt);
+    console.log("🚀 ~ router.get ~ result:", result);
     res.json({ response: result.response.text() });
   } catch (error) {
     res.status(500).json({ error: 'Failed to generate content', details: error.message });
@@ -29,7 +30,7 @@ router.post('/generate-custom', async (req, res) => {
 
     const model = await genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const result = await model.generateContent(prompt);
-
+    console.log("🚀 ~ router.post ~ result:", result)
     res.json({ response: result.response.text() });
   } catch (error) {
     res.status(500).json({ error: 'Failed to generate content', details: error.message });
